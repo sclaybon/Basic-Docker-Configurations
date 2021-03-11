@@ -1,0 +1,15 @@
+export LC_ALL=C.UTF-8
+export LANG=C.UTF-8
+port="8888"
+delim='='
+for var in "$@"
+  do
+    echo "$var"
+    splitarg=${var%%$delim*}
+    if [ "$splitarg" == "--port" ]; then
+      # Yes, port was given in one arg e.g. --port=8888
+      port=${var#*$delim}
+      echo "Setting external port $port"
+    fi
+done
+jhsingle-native-proxy --destport 0 streamlit hello {--}server.port {port} {--}server.headless True {--}server.enableCORS False --port $port
