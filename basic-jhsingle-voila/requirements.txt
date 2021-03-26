@@ -1,0 +1,3 @@
+bqplot
+voila
+jhsingle-native-proxy
