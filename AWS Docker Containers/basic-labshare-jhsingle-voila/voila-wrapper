@@ -1,0 +1,17 @@
+#!/bin/bash
+
+export LC_ALL=C.UTF-8
+export LANG=C.UTF-8
+port="8888"
+delim='='
+for var in "$@"
+  do
+    echo "$var"
+    splitarg=${var%%$delim*}
+    if [ "$splitarg" == "--port" ]; then
+      # Yes, port was given in one arg e.g. --port=8888
+      port=${var#*$delim}
+      echo "Setting external port $port"
+    fi
+done
+python -m jhsingle_native_proxy.main --destport 0 voila /opt/shared/voila/app.ipynb {--}port={port} {--}no-browser {--}Voila.server_url=/ {--}Voila.base_url={base_url}/ {--}debug

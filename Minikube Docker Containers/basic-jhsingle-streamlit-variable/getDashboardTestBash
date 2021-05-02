@@ -1,0 +1,2 @@
+DASHBOARD="`python json_get_dashboard_name.py`"
+echo $DASHBOARD
