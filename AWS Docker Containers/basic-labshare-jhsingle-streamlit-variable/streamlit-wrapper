@@ -12,5 +12,6 @@ for var in "$@"
       echo "Setting external port $port"
     fi
 done
-DASHBOARD="`python json_get_dashboard_name.py`"
-jhsingle-native-proxy --destport 0 streamlit run ./$DASHBOARD {--}server.port {port} {--}server.headless True {--}server.enableCORS False --port $port
+DASHBOARD="`python /usr/local/streamlit/json_get_dashboard_name.py`"
+sleep 2  # Waits 2 seconds
+jhsingle-native-proxy --destport 0 streamlit run /usr/local/streamlit/$DASHBOARD {--}server.port {port} {--}server.headless True {--}server.enableCORS False {--}server.enableXsrfProtection False {--}server.enableWebsocketCompression False --port $port
