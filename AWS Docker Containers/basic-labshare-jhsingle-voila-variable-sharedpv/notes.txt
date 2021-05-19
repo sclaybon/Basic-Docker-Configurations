@@ -1,0 +1,7 @@
+//navigate to the directory and build the docker file
+docker build -f Dockerfile -t <dockerhub_username>/basic-streamlit:latest .
+//run it
+docker run -p 8501:8501 <dockerhub_username>/basic-streamlit:latest
+//see it locally
+localhost:8501 in your browser
+//using app.ipynb
